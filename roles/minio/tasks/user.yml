@@ -1,0 +1,11 @@
+---
+- name: Create MinIO group
+  group:
+    name: "{{ minio_user }}"
+    system: yes
+
+- name: Create MinIO user
+  user:
+    name: "{{ minio_user }}"
+    group: "{{ minio_group }}"
+    system: yes

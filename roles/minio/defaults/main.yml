@@ -1,0 +1,9 @@
+---
+minio_user: "minio-user"
+minio_group: "minio-user"
+minio_data_dir: "/mnt/data"
+minio_binary_path: "/usr/local/bin/minio"
+minio_volumes: []
+minio_opts: "--address :9000 --console-address :9001"
+minio_root_user: "minioadmin"
+minio_root_password: "minio-super-secret-key"

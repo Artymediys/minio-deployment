@@ -7,3 +7,9 @@ minio_volumes: []
 minio_opts: "--address :9000 --console-address :9001"
 minio_root_user: "minioadmin"
 minio_root_password: "minio-super-secret-key"
+
+minio_mounts:
+  - '/dev/sdb'
+  - '/dev/sdc'
+  - '/dev/sdd'
+  - '/dev/sde'

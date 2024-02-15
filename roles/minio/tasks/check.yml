@@ -1,0 +1,6 @@
+---
+- name: Check the number of specified disks
+  assert:
+    that: minio_mounts | length >= 4
+    fail_msg: "At least four disks must be specified"
+    success_msg: "A sufficient number of disks are specified"

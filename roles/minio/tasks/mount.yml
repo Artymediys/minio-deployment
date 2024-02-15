@@ -1,2 +1,22 @@
 ---
-# TODO this task file
+- name: Installing xfsprogs to work with XFS
+  package:
+    name: xfsprogs
+    state: present
+
+- name: Creating a mount point for MinIO data
+  file:
+    path: "{{ minio_data_dir }}"
+    state: directory
+    owner: "{{ minio_user }}"
+    group: "{{ minio_group }}"
+
+- name: Mounting a disk to a mount point
+  mount:
+    path: "{{ minio_data_dir }}"
+    src: "{{ item }}"
+    fstype: xfs
+    opts: defaults,noatime
+    state: mounted
+  loop: "{{ minio_mounts }}"
+  become: true

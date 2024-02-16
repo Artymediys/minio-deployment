@@ -3,7 +3,7 @@
 
 - name: MiniIO binary installation
   copy:
-    src: "../files/minio"
+    src: "{{ role_path }}/files/minio"
     dest: "{{ minio_binary_path }}"
     owner: "{{ minio_user }}"
     group: "{{ minio_group }}"

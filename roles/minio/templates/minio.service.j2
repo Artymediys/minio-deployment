@@ -5,7 +5,7 @@ After=network-online.target
 AssertFileIsExecutable={{ minio_binary_path }}
 
 [Service]
-WorkingDirectory={{ minio_data_dir }}
+WorkingDirectory=/usr/local/
 User={{ minio_user }}
 Group={{ minio_group }}
 ProtectProc=invisible

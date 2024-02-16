@@ -1,6 +1,16 @@
 ---
-- name: Check the number of specified disks
+- name: Check the number of specified disks per server
   assert:
     that: minio_mounts | length >= 4
-    fail_msg: "At least four disks must be specified"
+    fail_msg: "At least four disks per server must be specified"
     success_msg: "A sufficient number of disks are specified"
+
+- name: Erasure Coding configuration check
+  assert:
+    that:
+      - minio_standart_ec_parity_drives >= 1
+      - minio_standart_ec_parity_drives <= (minio_total_disks / 2)
+      - minio_rrs_ec_parity_drives >= 1
+      - minio_rrs_ec_parity_drives <= (minio_total_disks / 4)
+    fail_msg: "Erasure Coding configuration does not meet fault tolerance requirements"
+    success_msg: "Erasure Coding configuration meets fault tolerance requirements"

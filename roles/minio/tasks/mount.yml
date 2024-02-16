@@ -6,17 +6,22 @@
 
 - name: Creating a mount point for MinIO data
   file:
-    path: "{{ minio_data_dir }}"
+    path: "{{ minio_data_dir }}{{ ansible_loop.index }}"
     state: directory
     owner: "{{ minio_user }}"
     group: "{{ minio_group }}"
+  loop: "{{ minio_mounts }}"
+  loop_control:
+    extended: true
 
 - name: Mounting a disk to a mount point
   mount:
-    path: "{{ minio_data_dir }}"
+    path: "{{ minio_data_dir }}{{ ansible_loop.index }}"
     src: "{{ item }}"
     fstype: xfs
     opts: defaults,noatime
     state: mounted
   loop: "{{ minio_mounts }}"
+  loop_control:
+    extended: true
   become: true

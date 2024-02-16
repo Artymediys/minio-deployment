@@ -1,15 +1,19 @@
 ---
 minio_user: "minio-user"
 minio_group: "minio-user"
-minio_data_dir: "/mnt/data"
+minio_data_dir: "/mnt/minio/disk"
 minio_binary_path: "/usr/local/bin/minio"
-minio_volumes: []
 minio_opts: "--address :9000 --console-address :9001"
-minio_root_user: "minioadmin"
-minio_root_password: "minio-super-secret-key"
+minio_root_user: "minioadmin" # change: get from Vault
+minio_root_password: "minio-super-secret-key" # change: get from Vault
+
 
 minio_mounts:
   - '/dev/sdb'
   - '/dev/sdc'
   - '/dev/sdd'
   - '/dev/sde'
+
+minio_total_disks: "{{ groups['minio_servers'] | length * minio_mounts | length }}"
+minio_standart_ec_parity_drives: "{{ minio_total_disks | int / 2 }}"
+minio_rrs_ec_parity_drives: "{{ minio_standart_ec_parity_drives | int / 2 }}"

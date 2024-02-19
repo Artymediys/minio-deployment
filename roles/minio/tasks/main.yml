@@ -1,10 +1,16 @@
 ---
-# TODO this task file
+- name: Requirements verification
+  import_tasks: check.yml
 
-- name: MiniIO binary installation
-  copy:
-    src: "{{ role_path }}/files/minio"
-    dest: "{{ minio_binary_path }}"
-    owner: "{{ minio_user }}"
-    group: "{{ minio_group }}"
-    mode: '0755'
+- name: Creating a MinIO user and group
+  import_tasks: user.yml
+
+- name: Installing and configuring mount points
+  import_tasks: mount.yml
+
+- name: Installing the MinIO binary file
+  import_tasks: install.yml
+
+- name: MinIO envfile and systemd configuration
+  import_tasks: configure.yml
+  

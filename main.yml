@@ -1,0 +1,13 @@
+---
+- name: Installing and configuring MinIO
+  hosts: minio_servers
+  become: yes
+  roles:
+    - minio
+
+# vars:
+#   minio_mounts:
+#   - '/dev/sdb'
+#   - '/dev/sdc'
+#   - '/dev/sdd'
+#   - '/dev/sde'

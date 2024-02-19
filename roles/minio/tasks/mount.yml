@@ -24,4 +24,3 @@
   loop: "{{ minio_mounts }}"
   loop_control:
     extended: true
-  become: true

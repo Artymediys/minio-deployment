@@ -14,6 +14,12 @@
   loop_control:
     extended: true
 
+- name: Creating an XFS file system on disks
+  filesystem:
+    fstype: xfs
+    dev: "{{ item }}"
+  loop: "{{ minio_mounts }}"
+
 - name: Mounting a disk to a mount point
   mount:
     path: "{{ minio_data_dir }}{{ ansible_loop.index }}"

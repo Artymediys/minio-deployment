@@ -13,4 +13,3 @@
 
 - name: MinIO envfile and systemd configuration
   import_tasks: configure.yml
-  

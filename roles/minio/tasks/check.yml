@@ -8,9 +8,9 @@
 - name: Erasure Coding configuration check
   assert:
     that:
-      - minio_standart_ec_parity_drives >= 1
-      - minio_standart_ec_parity_drives <= (minio_total_disks / 2)
-      - minio_rrs_ec_parity_drives >= 1
-      - minio_rrs_ec_parity_drives <= (minio_total_disks / 4)
+      - minio_standard_ec_parity_drives | int >= 1
+      - minio_standard_ec_parity_drives | int <= (minio_total_disks | int / 2)
+      - minio_rrs_ec_parity_drives | int >= 1
+      - minio_rrs_ec_parity_drives | int <= (minio_total_disks | int / 4)
     fail_msg: "Erasure Coding configuration does not meet fault tolerance requirements"
     success_msg: "Erasure Coding configuration meets fault tolerance requirements"

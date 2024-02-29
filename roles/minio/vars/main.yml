@@ -4,10 +4,16 @@ minio_group: "minio-user"
 minio_data_dir: "/mnt/minio/disk"
 minio_binary_path: "/usr/local/bin/minio"
 minio_opts: "--address :9000 --console-address :9001"
-minio_root_user: "minioadmin" # change: get from Vault
-minio_root_password: "minio-super-secret-key" # change: get from Vault
 
 
+# Access Key for MinIO. Must be at least 3 characters long
+minio_root_user: "" # change: get from Vault
+
+# Secret Key for MinIo. Must be at least 8 characters long
+minio_root_password: "" # change: get from Vault
+
+
+# At least 4 disks per server must be specified
 minio_mounts:
   - '/dev/sdb'
   - '/dev/sdc'

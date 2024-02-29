@@ -14,3 +14,12 @@
       - minio_rrs_ec_parity_drives | int <= (minio_total_disks | int // 4)
     fail_msg: "Erasure Coding configuration does not meet fault tolerance requirements"
     success_msg: "Erasure Coding configuration meets fault tolerance requirements"
+
+
+- name: Check MinIO Access Key and Secret Key requirements
+  assert:
+    that:
+      - minio_root_user | length >= 3
+      - minio_root_password | length >= 8
+    fail_msg: "minio_root_user must be at least 3 characters long, minio_root_password must be at least 8 characters long"
+    success_msg: "Access Key and Secret Key meet the requirements"

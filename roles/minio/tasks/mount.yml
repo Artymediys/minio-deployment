@@ -30,3 +30,14 @@
   loop: "{{ minio_mounts }}"
   loop_control:
     extended: true
+
+- name: Changing ownership of the mount points to MinIO user and group
+  file:
+    path: "{{ minio_data_dir }}{{ ansible_loop.index }}"
+    state: directory
+    owner: "{{ minio_user }}"
+    group: "{{ minio_group }}"
+    recurse: yes
+  loop: "{{ minio_mounts }}"
+  loop_control:
+    extended: true

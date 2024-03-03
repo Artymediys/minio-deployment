@@ -9,10 +9,8 @@ import (
 )
 
 func main() {
-	ev := make(map[string]interface{}, 1)
-	ev["ask-become-pass"] = nil
 	options := &playbook.AnsiblePlaybookOptions{
-		ExtraVars: ev,
+		AskBecomePass: true,
 	}
 
 	playbookInstance := playbook.NewAnsiblePlaybookExecute("main.yml").WithPlaybookOptions(options)

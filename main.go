@@ -9,7 +9,13 @@ import (
 )
 
 func main() {
-	playbookInstance := playbook.NewAnsiblePlaybookExecute("main.yml")
+	ev := make(map[string]interface{}, 1)
+	ev["ask-become-pass"] = nil
+	options := &playbook.AnsiblePlaybookOptions{
+		ExtraVars: ev,
+	}
+
+	playbookInstance := playbook.NewAnsiblePlaybookExecute("main.yml").WithPlaybookOptions(options)
 
 	err := workflow.NewWorkflowExecute(playbookInstance).Execute(context.TODO())
 	if err != nil {

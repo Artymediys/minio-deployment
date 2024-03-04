@@ -7,11 +7,17 @@ minio_opts: "--address :9000 --console-address :9001"
 
 
 # Access Key for MinIO. Must be at least 3 characters long
-minio_root_user: "" # change: get from Vault
+minio_root_user: ""
 
-# Secret Key for MinIo. Must be at least 8 characters long
-minio_root_password: "" # change: get from Vault
+# Secret Key for MinIO. Must be at least 8 characters long
+minio_root_password: ""
 
+
+# Example:
+# minio_servername_prefix: "minio"; minio_servername_dns_zone: "company.ru"
+# Result --> minio.company.ru
+minio_servername_prefix: ""
+minio_servername_dns_zone: ""
 
 # At least 4 disks per server must be specified
 minio_mounts:

@@ -1,12 +1,12 @@
 # MinIO deployment
-
 **Ansible-playbook for running MinIO deployment in Multi-node Multi-drive mode.**
 
 
-### Settings
+## Settings
 
-Before launching the playbook, you can edit the default value
-variable `minio_mounts` to indicate the actual disks on the nodes:
+### Discs
+Before launching the playbook you can edit the default value
+variable `minio_mounts` to indicate the actual disks on the servers:
 
 ```yaml
 vars:
@@ -17,7 +17,11 @@ vars:
      - '/dev/sde'
 ```
 
-You should also specify the Access key and Secret Key for MinIO:
+
+### Root user and password
+A mandatory requirement is to specify the Access key and Secret Key values for MinIO.
+
+Example:
 ```yaml
 vars:
    minio_root_user: "minio-login"
@@ -28,8 +32,14 @@ vars:
 `minio_root_password` must be at least 8 characters long;
 
 
-### Launch
+### Prefix and DNS-zone
+You must also specify the prefix and DNS-Zone.
 
-There are two ways to launch a playbook:
-1) Using the command `ansible-playbook main.yml --ask-become-pass`
-2) Run the binary file `minio-deployment-<arm/amd>64`
+Example:
+```yaml
+vars:
+   minio_servername_prefix: "minio"
+   minio_servername_dns_zone: "company.ru"
+```
+
+As a result, the address will look like this: `minio.company.ru`

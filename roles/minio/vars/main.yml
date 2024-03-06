@@ -1,31 +1,9 @@
 ---
 minio_user: "minio-user"
 minio_group: "minio-user"
+
 minio_data_dir: "/mnt/minio/disk"
 minio_binary_path: "/usr/local/bin/minio"
+
 minio_opts: "--console-address :9001"
-
-
-# Access Key for MinIO. Must be at least 3 characters long
-minio_root_user: ""
-
-# Secret Key for MinIO. Must be at least 8 characters long
-minio_root_password: ""
-
-
-# Example:
-# minio_servername_prefix: "minio"; minio_servername_dns_zone: "company.ru"
-# Result --> minio.company.ru
-minio_servername_prefix: ""
-minio_servername_dns_zone: ""
-
-# At least 4 disks per server must be specified
-minio_mounts:
-  - '/dev/sdb'
-  - '/dev/sdc'
-  - '/dev/sdd'
-  - '/dev/sde'
-
-# You can calculate this variable in the official calculator: https://min.io/product/erasure-code-calculator
-minio_standard_ec_parity_drives: ""
 minio_rrs_ec_parity_drives: "{{ minio_standard_ec_parity_drives | int // 2 }}"

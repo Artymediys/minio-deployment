@@ -3,6 +3,9 @@
   template:
     src: "minio.env.j2"
     dest: /etc/default/minio
+  notify:
+    - reload systemd
+    - restart minio
 
 - name: Create the MinIO systemd 
   template:

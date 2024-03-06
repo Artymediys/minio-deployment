@@ -3,7 +3,7 @@ minio_user: "minio-user"
 minio_group: "minio-user"
 minio_data_dir: "/mnt/minio/disk"
 minio_binary_path: "/usr/local/bin/minio"
-minio_opts: "--address :9000 --console-address :9001"
+minio_opts: "--console-address :9001"
 
 
 # Access Key for MinIO. Must be at least 3 characters long
@@ -26,6 +26,6 @@ minio_mounts:
   - '/dev/sdd'
   - '/dev/sde'
 
-minio_total_disks: "{{ groups['minio_servers'] | length * minio_mounts | length }}"
-minio_standard_ec_parity_drives: "{{ minio_total_disks | int // 2 }}"
+# You can calculate this variable in the official calculator: https://min.io/product/erasure-code-calculator
+minio_standard_ec_parity_drives: ""
 minio_rrs_ec_parity_drives: "{{ minio_standard_ec_parity_drives | int // 2 }}"

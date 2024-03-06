@@ -6,6 +6,9 @@
     owner: "{{ minio_user }}"
     group: "{{ minio_group }}"
     mode: '0755'
+  notify:
+    - reload systemd
+    - restart minio
 
 
 #- name: MiniIO client binary installation
@@ -15,3 +18,6 @@
 #    owner: "{{ minio_user }}"
 #    group: "{{ minio_group }}"
 #    mode: '0755'
+#  notify:
+#    - reload systemd
+#    - restart minio

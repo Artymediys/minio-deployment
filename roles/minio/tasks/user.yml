@@ -1,11 +1,17 @@
 ---
 - name: Create MinIO group
   group:
-    name: "{{ minio_user }}"
+    name: "{{ minio_group }}"
     system: yes
+  notify:
+    - reload systemd
+    - restart minio
 
 - name: Create MinIO user
   user:
     name: "{{ minio_user }}"
     group: "{{ minio_group }}"
     system: yes
+  notify:
+    - reload systemd
+    - restart minio

@@ -5,16 +5,6 @@
     fail_msg: "At least four disks per server must be specified"
     success_msg: "A sufficient number of disks are specified"
 
-- name: Erasure Coding configuration check
-  assert:
-    that:
-      - minio_standard_ec_parity_drives | int >= 1
-      - minio_standard_ec_parity_drives | int <= (minio_total_disks | int // 2)
-      - minio_rrs_ec_parity_drives | int >= 1
-      - minio_rrs_ec_parity_drives | int <= (minio_total_disks | int // 4)
-    fail_msg: "Erasure Coding configuration does not meet fault tolerance requirements"
-    success_msg: "Erasure Coding configuration meets fault tolerance requirements"
-
 
 - name: Check MinIO Access Key and Secret Key requirements
   assert:

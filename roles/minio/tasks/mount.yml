@@ -1,9 +1,4 @@
 ---
-- name: Installing xfsprogs to work with XFS
-  package:
-    name: xfsprogs
-    state: present
-
 - name: Creating a mount point for MinIO data
   file:
     path: "{{ minio_data_dir }}{{ ansible_loop.index }}"
@@ -13,12 +8,18 @@
   loop: "{{ minio_mounts }}"
   loop_control:
     extended: true
+  notify:
+    - reload systemd
+    - restart minio
 
 - name: Creating an XFS file system on disks
   filesystem:
     fstype: xfs
     dev: "{{ item }}"
   loop: "{{ minio_mounts }}"
+  notify:
+    - reload systemd
+    - restart minio
 
 - name: Mounting a disk to a mount point
   mount:
@@ -30,6 +31,9 @@
   loop: "{{ minio_mounts }}"
   loop_control:
     extended: true
+  notify:
+    - reload systemd
+    - restart minio
 
 - name: Changing ownership of the mount points to MinIO user and group
   file:
@@ -41,3 +45,6 @@
   loop: "{{ minio_mounts }}"
   loop_control:
     extended: true
+  notify:
+    - reload systemd
+    - restart minio

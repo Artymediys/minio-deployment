@@ -3,11 +3,10 @@
   hosts: minio_servers
   become: yes
   roles:
-    - minio
-
-# vars:
-#   minio_mounts:
-#   - '/dev/sdb'
-#   - '/dev/sdc'
-#   - '/dev/sdd'
-#   - '/dev/sde'
+    - role: minio
+      vars:
+        minio_root_user: ""
+        minio_root_password: ""
+        minio_servername_prefix: ""
+        minio_servername_dns_zone: ""
+        minio_standard_ec_parity_drives: ""

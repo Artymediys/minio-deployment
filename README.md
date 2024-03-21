@@ -43,3 +43,13 @@ vars:
 ```
 
 As a result, the address will look like this: `minio.company.ru`
+
+
+### Erasure Code setting
+To configure fault tolerance, the Erasure Code Parity variable must be specified.
+You can calculate this variable in the official calculator: `https://min.io/product/erasure-code-calculator`
+
+Example:
+```yaml
+minio_standard_ec_parity_drives: "2"
+```
